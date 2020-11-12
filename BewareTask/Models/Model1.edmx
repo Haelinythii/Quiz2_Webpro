@@ -1,0 +1,339 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bewaretaskaspModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="archived_task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+          <Property Name="TaskName" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="deadline" Type="date" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TagName" Type="varchar" MaxLength="1024" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tag_task">
+          <Key>
+            <PropertyRef Name="tag_taskID" />
+          </Key>
+          <Property Name="task_id" Type="int" Nullable="false" />
+          <Property Name="tag_id" Type="int" Nullable="false" />
+          <Property Name="tag_taskID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TaskName" Type="varchar" MaxLength="1024" Nullable="false" />
+          <Property Name="deadline" Type="date" Nullable="false" />
+          <Property Name="idUser" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="email" Type="varchar" MaxLength="64" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_archived_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="archived_task" Type="Self.archived_task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="archived_task">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tagtask_tag">
+          <End Role="tag" Type="Self.tag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tag_task" Type="Self.tag_task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tag_task">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tagtask_task">
+          <End Role="task" Type="Self.task" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tag_task" Type="Self.tag_task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tag_task">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_task_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bewaretaskaspModelStoreContainer">
+          <EntitySet Name="archived_task" EntityType="Self.archived_task" Schema="bewaretaskasp" store:Type="Tables" />
+          <EntitySet Name="tag" EntityType="Self.tag" Schema="bewaretaskasp" store:Type="Tables" />
+          <EntitySet Name="tag_task" EntityType="Self.tag_task" Schema="bewaretaskasp" store:Type="Tables" />
+          <EntitySet Name="task" EntityType="Self.task" Schema="bewaretaskasp" store:Type="Tables" />
+          <EntitySet Name="user" EntityType="Self.user" Schema="bewaretaskasp" store:Type="Tables" />
+          <AssociationSet Name="fk_archived_user" Association="Self.fk_archived_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="archived_task" EntitySet="archived_task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tagtask_tag" Association="Self.fk_tagtask_tag">
+            <End Role="tag" EntitySet="tag" />
+            <End Role="tag_task" EntitySet="tag_task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tagtask_task" Association="Self.fk_tagtask_task">
+            <End Role="task" EntitySet="task" />
+            <End Role="tag_task" EntitySet="tag_task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_task_user" Association="Self.fk_task_user">
+            <End Role="user" EntitySet="user" />
+            <End Role="task" EntitySet="task" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bewaretaskaspModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="archived_task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <Property Name="TaskName" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deadline" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="Self.fk_archived_user" FromRole="archived_task" ToRole="user" />
+        </EntityType>
+        <EntityType Name="tag">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TagName" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tag_task" Relationship="Self.fk_tagtask_tag" FromRole="tag" ToRole="tag_task" />
+        </EntityType>
+        <EntityType Name="tag_task">
+          <Key>
+            <PropertyRef Name="tag_taskID" />
+          </Key>
+          <Property Name="task_id" Type="Int32" Nullable="false" />
+          <Property Name="tag_id" Type="Int32" Nullable="false" />
+          <Property Name="tag_taskID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="tag" Relationship="Self.fk_tagtask_tag" FromRole="tag_task" ToRole="tag" />
+          <NavigationProperty Name="task" Relationship="Self.fk_tagtask_task" FromRole="tag_task" ToRole="task" />
+        </EntityType>
+        <EntityType Name="task">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TaskName" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deadline" Type="DateTime" Nullable="false" />
+          <Property Name="idUser" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tag_task" Relationship="Self.fk_tagtask_task" FromRole="task" ToRole="tag_task" />
+          <NavigationProperty Name="user" Relationship="Self.fk_task_user" FromRole="task" ToRole="user" />
+        </EntityType>
+        <EntityType Name="user">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="archived_task" Relationship="Self.fk_archived_user" FromRole="user" ToRole="archived_task" />
+          <NavigationProperty Name="tasks" Relationship="Self.fk_task_user" FromRole="user" ToRole="task" />
+        </EntityType>
+        <Association Name="fk_archived_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="archived_task" Type="Self.archived_task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="archived_task">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tagtask_tag">
+          <End Role="tag" Type="Self.tag" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tag_task" Type="Self.tag_task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tag">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tag_task">
+              <PropertyRef Name="tag_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_tagtask_task">
+          <End Role="task" Type="Self.task" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="tag_task" Type="Self.tag_task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="task">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tag_task">
+              <PropertyRef Name="task_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_task_user">
+          <End Role="user" Type="Self.user" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="task" Type="Self.task" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="user">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="task">
+              <PropertyRef Name="idUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bewaretaskaspEntities3" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="archived_task" EntityType="Self.archived_task" />
+          <EntitySet Name="tags" EntityType="Self.tag" />
+          <EntitySet Name="tag_task" EntityType="Self.tag_task" />
+          <EntitySet Name="tasks" EntityType="Self.task" />
+          <EntitySet Name="users" EntityType="Self.user" />
+          <AssociationSet Name="fk_archived_user" Association="Self.fk_archived_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="archived_task" EntitySet="archived_task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tagtask_tag" Association="Self.fk_tagtask_tag">
+            <End Role="tag" EntitySet="tags" />
+            <End Role="tag_task" EntitySet="tag_task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_tagtask_task" Association="Self.fk_tagtask_task">
+            <End Role="task" EntitySet="tasks" />
+            <End Role="tag_task" EntitySet="tag_task" />
+          </AssociationSet>
+          <AssociationSet Name="fk_task_user" Association="Self.fk_task_user">
+            <End Role="user" EntitySet="users" />
+            <End Role="task" EntitySet="tasks" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bewaretaskaspModelStoreContainer" CdmEntityContainer="bewaretaskaspEntities3">
+          <EntitySetMapping Name="archived_task">
+            <EntityTypeMapping TypeName="bewaretaskaspModel.archived_task">
+              <MappingFragment StoreEntitySet="archived_task">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="deadline" ColumnName="deadline" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tags">
+            <EntityTypeMapping TypeName="bewaretaskaspModel.tag">
+              <MappingFragment StoreEntitySet="tag">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TagName" ColumnName="TagName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tag_task">
+            <EntityTypeMapping TypeName="bewaretaskaspModel.tag_task">
+              <MappingFragment StoreEntitySet="tag_task">
+                <ScalarProperty Name="task_id" ColumnName="task_id" />
+                <ScalarProperty Name="tag_id" ColumnName="tag_id" />
+                <ScalarProperty Name="tag_taskID" ColumnName="tag_taskID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tasks">
+            <EntityTypeMapping TypeName="bewaretaskaspModel.task">
+              <MappingFragment StoreEntitySet="task">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="TaskName" ColumnName="TaskName" />
+                <ScalarProperty Name="deadline" ColumnName="deadline" />
+                <ScalarProperty Name="idUser" ColumnName="idUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="bewaretaskaspModel.user">
+              <MappingFragment StoreEntitySet="user">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
