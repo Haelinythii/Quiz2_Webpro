@@ -41,6 +41,7 @@ namespace BewareTask.Controllers
                                 "</tr>";
                         }
                         ViewData["task"] = result;
+                        ViewData["taskList"] = data;
                         return View();
                     }
                     else
