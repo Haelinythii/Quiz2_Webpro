@@ -84,6 +84,11 @@ namespace BewareTask.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult Edit()
+        {
+            return View();
+        }
+
         public ActionResult DeleteTask(int id)
         {
             if (ModelState.IsValid)
