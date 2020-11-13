@@ -14,3 +14,19 @@
 <input type="submit" name="submit" class="btn btn-danger" value="AddTask" />
 
 <h1>Your Task List</h1>
+@{
+    var data = ViewData["task"];
+}
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Task</th>
+            <th>Due Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.Raw(ViewData["task"])
+    </tbody>
+</table>
