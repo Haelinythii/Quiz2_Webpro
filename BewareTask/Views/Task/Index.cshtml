@@ -9,9 +9,36 @@
 </h2>
 
 <h1>Add new task</h1>
-@Html.LabelFor(m => m.TaskName)
-@Html.TextBoxFor(m => m.TaskName, new { @class = "form-control", @placeholder = "Type your task name here!" })
-<input type="submit" name="submit" class="btn btn-danger" value="AddTask" />
+
+<div >
+    @using (Html.BeginForm("CreateTask", "Task", FormMethod.Post))
+    {
+        //@Html.ValidationSummary()
+        @Html.AntiForgeryToken()
+
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title" id="loginTitle">
+                    Register
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    @Html.LabelFor(m => m.TaskName)
+                    @Html.TextBoxFor(m => m.TaskName, new { @class = "form-control", @placeholder = "Type your task name here!" })
+                </div>
+               
+                <div class="form-group">
+                    <input type="submit" name="submit" class="btn btn-danger" id="btnLogin" value="AddTask" />
+                </div>
+            </div>
+        </div>
+
+    }
+
+</div>
+
+
 
 <h1>Your Task List</h1>
 @{
