@@ -1,7 +1,20 @@
 ﻿@{
     ViewBag.Title = "About";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<p>Use this area to provide additional information.</p>
+<div class="container-fluid">
+    <div class="row">
+        <h1 style="font-family:Tokyo">Hi There!</h1>
+        <h3 >Let us introduce ourself!</h3>
+        <h4 style="color:#ff8559">We are Beware</h4>
+        <p>Beware! is a small team of computer science students.</p>
+        <p>We usually focus on developing mobile games.</p>
+        <p>If you want to know us more,you can contact us @Html.ActionLink("Here!", "Contact", "Home")</p>
+    </div>
+    <div class="row">
+        <br />
+        <p>This website used for task management. Where we can add and set due date to a task</p>
+        <p>By doing that, we hope that we can manage our time and task more efficiently</p>
+    </div>
+</div>
+
