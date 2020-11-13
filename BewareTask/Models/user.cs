@@ -11,7 +11,8 @@ namespace BewareTask.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class user
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -22,8 +23,11 @@ namespace BewareTask.Models
         }
     
         public int id { get; set; }
+        [Required]
         public string name { get; set; }
+        [Required]
         public string password { get; set; }
+        [Required]
         public string email { get; set; }
         public System.DateTime created_at { get; set; }
         public System.DateTime updated_at { get; set; }

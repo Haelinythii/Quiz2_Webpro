@@ -10,7 +10,14 @@ namespace BewareTask.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            if (Session["idUser"] != null) // dah login
+            {
+                return View(); // retrun to add task
+            }
+            else // belum login
+            {
+                return View();
+            }
         }
 
         public ActionResult About()
