@@ -18,6 +18,8 @@ namespace BewareTask.Models
         public int idUser { get; set; }
         public string TaskName { get; set; }
         public System.DateTime deadline { get; set; }
+        public System.DateTime created_at { get; set; }
+        public System.DateTime updated_at { get; set; }
     
         public virtual user user { get; set; }
     }

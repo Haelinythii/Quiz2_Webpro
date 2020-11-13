@@ -24,6 +24,8 @@ namespace BewareTask.Models
         public string TaskName { get; set; }
         public System.DateTime deadline { get; set; }
         public int idUser { get; set; }
+        public System.DateTime created_at { get; set; }
+        public System.DateTime updated_at { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<tag_task> tag_task { get; set; }

@@ -4,10 +4,12 @@
     <Key>
       <PropertyRef Name="id" />
     </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
     <Property Name="idUser" Type="int" Nullable="false" />
     <Property Name="TaskName" Type="varchar" MaxLength="1024" Nullable="false" />
     <Property Name="deadline" Type="date" Nullable="false" />
+    <Property Name="created_at" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="updated_at" Type="timestamp" Precision="0" Nullable="false" />
   </EntityType>
   <EntityType Name="tag">
     <Key>
@@ -15,6 +17,8 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TagName" Type="varchar" MaxLength="1024" Nullable="false" />
+    <Property Name="created_at" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="updated_at" Type="timestamp" Precision="0" Nullable="false" />
   </EntityType>
   <EntityType Name="tag_task">
     <Key>
@@ -30,8 +34,10 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="TaskName" Type="varchar" MaxLength="1024" Nullable="false" />
-    <Property Name="deadline" Type="date" Nullable="false" />
+    <Property Name="deadline" Type="date" />
     <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="created_at" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="updated_at" Type="timestamp" Precision="0" Nullable="false" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -41,6 +47,8 @@
     <Property Name="name" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="password" Type="varchar" MaxLength="64" Nullable="false" />
     <Property Name="email" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="created_at" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="updated_at" Type="timestamp" Precision="0" Nullable="false" />
   </EntityType>
   <Association Name="fk_archived_user">
     <End Role="user" Type="Self.user" Multiplicity="1">

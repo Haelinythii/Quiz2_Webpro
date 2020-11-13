@@ -9,6 +9,8 @@
     <Property Name="TaskName" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="deadline" Type="DateTime" Nullable="false" />
     <NavigationProperty Name="user" Relationship="Self.fk_archived_user" FromRole="archived_task" ToRole="user" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" />
+    <Property Name="updated_at" Type="DateTime" Nullable="false" />
   </EntityType>
   <EntityType Name="tag">
     <Key>
@@ -17,6 +19,8 @@
     <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
     <Property Name="TagName" Type="String" MaxLength="1024" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="tag_task" Relationship="Self.fk_tagtask_tag" FromRole="tag" ToRole="tag_task" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" />
+    <Property Name="updated_at" Type="DateTime" Nullable="false" />
   </EntityType>
   <EntityType Name="tag_task">
     <Key>
@@ -38,6 +42,8 @@
     <Property Name="idUser" Type="Int32" Nullable="false" />
     <NavigationProperty Name="tag_task" Relationship="Self.fk_tagtask_task" FromRole="task" ToRole="tag_task" />
     <NavigationProperty Name="user" Relationship="Self.fk_task_user" FromRole="task" ToRole="user" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" />
+    <Property Name="updated_at" Type="DateTime" Nullable="false" />
   </EntityType>
   <EntityType Name="user">
     <Key>
@@ -49,6 +55,8 @@
     <Property Name="email" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="archived_task" Relationship="Self.fk_archived_user" FromRole="user" ToRole="archived_task" />
     <NavigationProperty Name="tasks" Relationship="Self.fk_task_user" FromRole="user" ToRole="task" />
+    <Property Name="created_at" Type="DateTime" Nullable="false" />
+    <Property Name="updated_at" Type="DateTime" Nullable="false" />
   </EntityType>
   <Association Name="fk_archived_user">
     <End Role="user" Type="Self.user" Multiplicity="1">

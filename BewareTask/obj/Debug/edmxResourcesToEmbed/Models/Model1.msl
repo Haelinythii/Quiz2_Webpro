@@ -4,6 +4,8 @@
     <EntitySetMapping Name="archived_task">
       <EntityTypeMapping TypeName="bewaretaskaspModel.archived_task">
         <MappingFragment StoreEntitySet="archived_task">
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="idUser" ColumnName="idUser" />
           <ScalarProperty Name="TaskName" ColumnName="TaskName" />
@@ -14,6 +16,8 @@
     <EntitySetMapping Name="tags">
       <EntityTypeMapping TypeName="bewaretaskaspModel.tag">
         <MappingFragment StoreEntitySet="tag">
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="TagName" ColumnName="TagName" />
         </MappingFragment>
@@ -31,6 +35,8 @@
     <EntitySetMapping Name="tasks">
       <EntityTypeMapping TypeName="bewaretaskaspModel.task">
         <MappingFragment StoreEntitySet="task">
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="TaskName" ColumnName="TaskName" />
           <ScalarProperty Name="deadline" ColumnName="deadline" />
@@ -41,6 +47,8 @@
     <EntitySetMapping Name="users">
       <EntityTypeMapping TypeName="bewaretaskaspModel.user">
         <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="updated_at" ColumnName="updated_at" />
+          <ScalarProperty Name="created_at" ColumnName="created_at" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="password" ColumnName="password" />
