@@ -4,43 +4,48 @@
     ViewBag.Title = "Login";
 }
 
-<form action="#" class="bg-white rounded pb_form_v1">
-    <h2 class="mb-4 mt-0 text-center">Login</h2>
-    <div class="form-group">
-        <input type="text" class="form-control pb_height-50 reverse" placeholder="Email">
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control pb_height-50 reverse" placeholder="Password">
-    </div>
-    <div class="form-group">
-        <input type="submit" class="btn btn-primary btn-lg btn-block pb_btn-pill  btn-shadow-blue" value="Login">
-    </div>
-</form>
+<body >
 
-<div class="row justify-content-md-center">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                Login
+    <div class="container" style="
+        height: 500px;
+        background-color: #ff8559;
+        border-radius: 10px;
+        margin-top: 80px">
+        <div class="row align-items-center justify-content-center" style="height:500px;overflow:hidden;">
+            <div class="col-md-6" style="height:500px">
+               <div id="loginContainer">
+                    <div class="card" >
+                        <div class="card-header" id="loginTitle">
+                            Login
+                        </div>
+                        <div class="card-body">
+                            @using (Html.BeginForm("Login", "User", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.email)
+                                    @Html.TextBoxFor(m => m.email, "", new { @class = "form-control", @placeholder = "Email" })
+
+                                </div>
+                                <div class="form-group">
+                                    @Html.LabelFor(m => m.password)
+                                    @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
+                                </div>
+                                <div class="form-group">
+                                    <input type="submit" name="submit" class="btn btn-primary" id="btnLogin" value="Login" />
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                @using (Html.BeginForm("Login", "User", FormMethod.Post))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.email)
-                        @Html.TextBoxFor(m => m.email, "", new { @class = "form-control", @placeholder = "Email" })
+            
+            <div class="col-md-6" style="overflow:hidden;background-image: url('../Images/Home.png'); background-size:contain; height:500px; background-repeat:no-repeat">
 
-                    </div>
-                    <div class="form-group">
-                        @Html.LabelFor(m => m.password)
-                        @Html.PasswordFor(m => m.password, new { @class = "form-control", @placeholder = "Password" })
-                    </div>
-                    <div class="form-group">
-                        <input type="submit" name="submit" class="btn btn-primary" value="Login" />
-                    </div>
-                }
             </div>
         </div>
     </div>
-</div>
+
+    
+
+</body>

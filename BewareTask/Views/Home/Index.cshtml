@@ -17,8 +17,8 @@
             <div class="sub-heading" id="subheadingTitle">
                 <p>Beware Task! is a simple to-do list web for your task managemen</p>
                 <p class="mb-5">
-                    <a class="btn btn-success btn-lg pb_btn-pill smoothscroll" style="background-color:#fff568; border:0px" href="#Register"><span style="color:black">Register Now!</span></a>
-                    <a class="btn btn-success btn-lg pb_btn-pill smoothscroll" style="background-color:#fff568; border:0px" href="#Register"><span style="color:black">Login</span></a>
+                    @Html.ActionLink("Login", "Login", "Home", new { @class = "btnActionLink" })
+                    @Html.ActionLink("Register Now!", "Register", "Home", new { @class = "btnActionLink" })
                 </p>
             </div>
         </div>
