@@ -69,23 +69,26 @@ namespace BewareTask.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult EditTask(int id)
+        public ActionResult EditTask(task task)
         {
-            if (ModelState.IsValid)
+            using (bewaretaskaspEntities3 database = new bewaretaskaspEntities3())
             {
-                using (bewaretaskaspEntities3 database = new bewaretaskaspEntities3())
-                {
-                    var data = database.tasks.Where(c => c.id == id).First();
-                    database.tasks.Remove(data);
-                    database.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                var data = database.tasks.Where(c => c.id == task.id).First();
+
+                data.TaskName = task.TaskName;
+                data.deadline = task.deadline;
+                database.SaveChanges();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
         }
 
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
+            using (bewaretaskaspEntities3 database = new bewaretaskaspEntities3())
+            {
+                var data = database.tasks.Where(c => c.id == id).First();
+                ViewData["editID"] = data;
+            }
             return View();
         }
 

@@ -11,7 +11,8 @@ namespace BewareTask.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class task
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +22,11 @@ namespace BewareTask.Models
         }
     
         public int id { get; set; }
+        [Required(ErrorMessage = "Must be filled")]
         public string TaskName { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:yyyy-MM-dd}")]
+        [DataType(DataType.Date)]
         public System.DateTime deadline { get; set; }
         public int idUser { get; set; }
         public System.DateTime created_at { get; set; }

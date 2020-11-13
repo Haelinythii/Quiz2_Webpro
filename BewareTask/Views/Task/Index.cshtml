@@ -71,7 +71,7 @@
                     {
                         <td>@item.deadline</td>
                     }
-                    <td>@Html.ActionLink("Edit", "Edit", "Task") | @Html.ActionLink("Delete", "DeleteTask", "Task", new { id = @item.id }, null)</td>
+                    <td>@Html.ActionLink("Edit", "Edit", "Task", new { id = @item.id }, null) | @Html.ActionLink("Delete", "DeleteTask", "Task", new { id = @item.id }, null)</td>
                 </tr>
             }
         }
