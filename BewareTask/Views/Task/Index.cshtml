@@ -52,25 +52,28 @@
     </thead>
     <tbody>
         @*@Html.Raw(ViewData["task"])*@
-        @{ 
+        @{
             var indexCount = 0;
         }
-        @foreach (var item in ViewData["taskList"] as List<BewareTask.Models.task>)
+        @if (ViewData["taskList"] != null)
         {
-            indexCount++;
-            <tr>
-                <td>@indexCount</td>
-                <td>@item.TaskName</td>
-                @if (item.deadline.Year == 1)
-                {
-                    <td>-</td>
-                }
-                else
-	            {
-                    <td>@item.deadline</td>
-	            }
-                <td>@Html.ActionLink("Edit", "EditTask", "Task") | @Html.ActionLink("Delete", "DeleteTask", "Task")</td>
-            </tr>
+            foreach (var item in ViewData["taskList"] as List<BewareTask.Models.task>)
+            {
+                indexCount++;
+                <tr>
+                    <td>@indexCount</td>
+                    <td>@item.TaskName</td>
+                    @if (item.deadline.Year == 1)
+                    {
+                        <td>-</td>
+                    }
+                    else
+                    {
+                        <td>@item.deadline</td>
+                    }
+                    <td>@Html.ActionLink("Edit", "EditTask", "Task") | @Html.ActionLink("Delete", "DeleteTask", "Task", new { id = @item.id }, null)</td>
+                </tr>
+            }
         }
     </tbody>
 </table>

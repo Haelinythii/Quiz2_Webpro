@@ -68,5 +68,35 @@ namespace BewareTask.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        public ActionResult EditTask(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                using (bewaretaskaspEntities3 database = new bewaretaskaspEntities3())
+                {
+                    var data = database.tasks.Where(c => c.id == id).First();
+                    database.tasks.Remove(data);
+                    database.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult DeleteTask(int id)
+        {
+            if (ModelState.IsValid)
+            {
+                using (bewaretaskaspEntities3 database = new bewaretaskaspEntities3())
+                {
+                    var data = database.tasks.Where(c => c.id == id).First();
+                    database.tasks.Remove(data);
+                    database.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+            }
+            return RedirectToAction("Index");
+        }
     }
 }
