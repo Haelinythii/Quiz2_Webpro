@@ -23,7 +23,7 @@ namespace BewareTask.Controllers
                         database.Configuration.ValidateOnSaveEnabled = false;
                         database.users.Add(usr);
                         database.SaveChanges();
-                        return RedirectToAction("Index", "Home", new { area = "" });
+                        return RedirectToAction("Login", "Home", new { area = "" });
                     }
                     else
                     {
@@ -47,7 +47,7 @@ namespace BewareTask.Controllers
                         //add session
                         Session["email"] = data.FirstOrDefault().email;
                         Session["userID"] = data.FirstOrDefault().id;
-                        return RedirectToAction("Index", "Home", new { area = "" });
+                        return RedirectToAction("Index", "Task", new { area = "" });
                     }
                     else
                     {
