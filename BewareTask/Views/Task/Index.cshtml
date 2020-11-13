@@ -1,7 +1,16 @@
-﻿
+﻿@model BewareTask.Models.task
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<h2>Index</h2>
+<h2>
+    Beware Taks!
+</h2>
 
+<h1>Add new task</h1>
+@Html.LabelFor(m => m.TaskName)
+@Html.TextBoxFor(m => m.TaskName, new { @class = "form-control", @placeholder = "Type your task name here!" })
+<input type="submit" name="submit" class="btn btn-danger" value="AddTask" />
+
+<h1>Your Task List</h1>
