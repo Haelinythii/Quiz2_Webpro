@@ -67,8 +67,19 @@
             width: 100%;
             text-align: center;
         }
-        
 
+        .navbar-brand {
+            color: #ff8559;
+        }
+
+        .navbar-inverse .navbar-brand {
+            color: #ff8559;
+        }
+
+        #btnLogin {
+            background-color: #d9653c;
+            border: 0px;
+        }
 
     </style>
    
@@ -82,14 +93,11 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Beware Tasks!", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Beware Tasks!", "Index", "Task", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-
+                    <li>@Html.ActionLink("Home", "Index", "Task")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li> @Html.ActionLink("Logout", "Logout", "User")</li>

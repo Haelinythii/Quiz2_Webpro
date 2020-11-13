@@ -4,11 +4,11 @@
     Layout = "~/Views/Shared/_LayoutLogin.cshtml";
 }
 
-<h2>
-    Beware Taks!
-</h2>
+<h1>
+    Beware Tasks!
+</h1>
 
-<h1>Add new task</h1>
+
 
 <div >
     @using (Html.BeginForm("CreateTask", "Task", FormMethod.Post))
@@ -19,7 +19,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="card-title" id="loginTitle">
-                    Register
+                    <h3>Add new task</h3>
                 </div>
             </div>
             <div class="card-body">
@@ -42,7 +42,7 @@
 
 <h1>Your Task List</h1>
 <table class="table table-bordered">
-    <thead>
+    <thead style="background-color:#ff8559">
         <tr>
             <th>No.</th>
             <th>Task</th>
